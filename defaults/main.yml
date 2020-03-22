@@ -5,6 +5,11 @@ docker_release_channel: stable
 # ce / ee
 docker_type: ce
 
+# Adds the user to group docker
+extra_docker_users: []
+#  - user1
+#  - user2
+
 # automatically adds the user to docker group ( build from docker_registry['become_user']
 _docker_users: "{{ docker_registry | map(attribute='become_user') | select('string') | list }}"
 

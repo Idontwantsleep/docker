@@ -1,0 +1,8 @@
+---
+# tasks for install
+- name: "Install {{ docker_package }}"
+  apt:
+    name: "{{ docker_package }}"
+    update_cache: yes
+    cache_valid_time: 3600
+    state: present

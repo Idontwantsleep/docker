@@ -1,0 +1,10 @@
+---
+# tasks for docker registry
+- name: Docker registry login
+  docker_login:
+    registry: "{{ item.registry }}"
+    username: "{{ item.username }}"
+    password: "{{ item.password }}"
+  become_user: "{{ item.become_user | default(omit) }}"
+  with_items: "{{ docker_registry }}"
+  # no_log: True

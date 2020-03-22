@@ -1,0 +1,8 @@
+---
+# tasks file for docker
+- include: check.yml
+- include: dependence.yml
+- include: repo.yml
+- include: install.yml
+- include: conf.yml
+- include: registry.yml

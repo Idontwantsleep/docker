@@ -1,0 +1,11 @@
+---
+# tasks for dependece packages
+- name: Install dependence packages
+  apt:
+    name: "{{ dependence_packages }}"
+    update_cache: yes
+    cache_valid_time: 3600
+
+- name: Install docker dependence
+  pip:
+    name: "{{ pip_dependence_packages }}"

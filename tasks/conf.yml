@@ -1,0 +1,21 @@
+---
+# tasks for conf docker daemon
+- name: Template daemon.json
+  template:
+    src: daemon.json.j2
+    dest: /etc/docker/daemon.json
+  register: docker_daemon_json
+
+- name: Restart docker.service
+  systemd:
+    name: docker.service
+    state: "{% if docker_daemon_json is changed %}re{% endif %}started"
+    enabled: yes
+
+- name: Add users to docker group
+  user:
+    name: "{{ item }}"
+    groups: "docker"
+    append: true
+  with_items:
+    - "{{ _docker_users | union(extra_docker_users) }}"

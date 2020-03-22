@@ -1,0 +1,15 @@
+---
+# tasks file for check
+- name: Check keys in daemon.json
+  assert:
+    that: "[{% for key in docker_daemon_json.keys() %}{% if key in daemon_json_allowed_keys %}True{% else %}, False{% endif %}{% endfor %}]"
+    fail_msg: "Failed to check keys for daemon.json"
+    success_msg: "Root-level keys are valid"
+
+- name: Check values
+  assert:
+    that:
+      - docker_release_channel in ["edge", "stable"]
+      - docker_type in ["ce", "ee"]
+    fail_msg: "Failed to verify values (docker_release_channel or docker_type)"
+    success_msg: "Values are valid"

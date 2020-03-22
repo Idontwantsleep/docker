@@ -1,0 +1,87 @@
+
+# https://docs.docker.com/engine/reference/commandline/dockerd/#daemon-configuration-file
+
+daemon_json_allowed_keys:
+  - authorization-plugins
+  - data-root
+  - dns
+  - dns-opts
+  - dns-search
+  - exec-opts
+  - exec-root
+  - experimental
+  - features
+  - storage-driver
+  - storage-opts
+  - labels
+  - live-restore
+  - log-driver
+  - log-opts
+  - mtu
+  - pidfile
+  - cluster-store
+  - cluster-store-opts
+  - cluster-advertise
+  - max-concurrent-downloads
+  - max-concurrent-uploads
+  - default-shm-size
+  - shutdown-timeout
+  - debug
+  - hosts
+  - log-level
+  - tls
+  - tlsverify
+  - tlscacert
+  - tlscert
+  - tlskey
+  - swarm-default-advertise-addr
+  - api-cors-header
+  - selinux-enabled
+  - userns-remap
+  - group
+  - cgroup-parent
+  - default-ulimits
+  - init
+  - init-path
+  - ipv6
+  - iptables
+  - ip-forward
+  - ip-masq
+  - userland-proxy
+  - userland-proxy-path
+  - ip
+  - bridge
+  - bip
+  - fixed-cidr
+  - fixed-cidr-v6
+  - default-gateway
+  - default-gateway-v6
+  - icc
+  - raw-logs
+  - allow-nondistributable-artifacts
+  - registry-mirrors
+  - seccomp-profile
+  - insecure-registries
+  - no-new-privileges
+  - default-runtime
+  - oom-score-adjust
+  - node-generic-resources
+  - runtimes
+  - default-address-pools
+
+dependence_packages:
+  - apt-transport-https
+  - ca-certificates
+  - gnupg2
+  - python-pip
+
+pip_dependence_packages:
+  - docker
+
+docker_url: "https://download.docker.com/linux/{{ ansible_distribution | lower }}"
+docker_gpg_url: "{{ docker_url }}/gpg"
+
+
+docker_package: "docker-{{ docker_type }}{% if docker_version is defined %}={{ docker_version }}{% endif %}"
+
+

@@ -19,3 +19,5 @@
     append: true
   with_items:
     - "{{ _docker_users | union(extra_docker_users) }}"
+  notify:
+    - reset ssh connection

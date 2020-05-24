@@ -1,0 +1,4 @@
+---
+# handlers file for docker
+- name: reset ssh connection
+  meta: reset_connection
